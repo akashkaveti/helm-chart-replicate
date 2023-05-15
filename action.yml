@@ -1,6 +1,6 @@
 # action.yml
 name: 'Helm chart replicate'
-description: 'Pushes a upstream helm chart to a OCI compatible registry'
+description: 'Pushes upstream helm chart to a OCI compatible registry'
 branding:
   color: 'green'
   icon: 'upload-cloud'
