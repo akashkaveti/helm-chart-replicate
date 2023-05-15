@@ -15,7 +15,7 @@ inputs:
     default: ''
   ghcr-url:
     description: 'Repository url'
-    required: true
+    required: false
     default: ''
   chart-repo-name:
     description: 'Relative path to chart folder'
@@ -25,10 +25,6 @@ inputs:
     required: false
   chart-version:
     description: 'Chart Version'
-    required: false
-    default: ''
-  appVersion:
-    description: 'App Version'
     required: false
     default: ''
 runs:

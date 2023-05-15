@@ -2,7 +2,7 @@
 set -e
 
 if [ -z "$GHCR_URL" ]; then
-  echo "Repository url is required but not defined."
+  echo "GHCR url is required but not defined."
   exit 1
 fi
 
