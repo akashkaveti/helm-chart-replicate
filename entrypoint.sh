@@ -39,7 +39,7 @@ fi
 helm repo add "${HELM_CHART_REPO_NAME}" "${HELM_CHART_REPO_URL}"
 helm pull "${HELM_CHART_REPO_NAME}"/"${HELM_CHART_REPO_NAME}" --version "${CHART_VERSION}"
 
-REGISTRY=$(echo "${GHCR_URL}" | awk -F[/:] '{print $4}') # Get registry host from url
+REGISTRY=$(echo "${GHCR_URL}" | awk -F'^oci?://' '{print $2}') # Get registry host from url
 echo "${GHCR_ACCESS_TOKEN}" | helm registry login -u ${GHCR_USERNAME} --password-stdin ${REGISTRY} # Authenticate registry
 PKG_NAME=$(ls | grep tgz)
 echo "${PKG_NAME}"
