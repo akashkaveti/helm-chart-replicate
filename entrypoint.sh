@@ -36,14 +36,14 @@ if [ -z "$CHART_VERSION"]; then
   exit 1
 fi
 
-helm repo add "{$HELM_CHART_REPO_NAME}" "{$HELM_CHART_REPO_URL}"
-helm pull "{$HELM_CHART_REPO_NAME}"/"{$HELM_CHART_REPO_NAME}" --version "{$CHART_VERSION}"
+helm repo add "${HELM_CHART_REPO_NAME}" "${HELM_CHART_REPO_URL}"
+helm pull "${HELM_CHART_REPO_NAME}"/"${HELM_CHART_REPO_NAME}" --version "${CHART_VERSION}"
 
 REGISTRY=$(echo "${GHCR_URL}" | awk -F[/:] '{print $4}') # Get registry host from url
 echo "${GHCR_ACCESS_TOKEN}" | helm registry login -u ${GHCR_USERNAME} --password-stdin ${REGISTRY} # Authenticate registry
 PKG_NAME=$(ls | grep tgz)
-echo "$PKG_NAME"
-echo "Pushing chart $PKG_NAME to '$GHCR_URL'"
-helm push "$PKG_NAME" "$GHCR_URL"
-echo "Successfully pushed chart $PKG_NAME to '$GHCR_URL'"
+echo "${PKG_NAME}"
+echo "Pushing chart ${PKG_NAME} to '${GHCR_URL}'"
+helm push "${PKG_NAME}" "${GHCR_URL}"
+echo "Successfully pushed chart ${PKG_NAME} to '${GHCR_URL}'"
 exit 0
