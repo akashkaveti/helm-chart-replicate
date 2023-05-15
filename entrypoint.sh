@@ -13,12 +13,12 @@ fi
 
 if [ "$GHCR_ACCESS_TOKEN" ]; then
   echo "Access token is defined, using bearer auth."
-  GHCR_ACCESS_TOKEN="--access-token ${GHCR_ACCESS_TOKEN}"
+  #GHCR_ACCESS_TOKEN="--access-token ${GHCR_ACCESS_TOKEN}"
 fi
 
 if [ "$GHCR_USERNAME" ]; then
   echo "Username is defined, using as parameter."
-  GHCR_USERNAME="--username ${GHCR_USERNAME}"
+  #GHCR_USERNAME="--username ${GHCR_USERNAME}"
 fi
 
 if [ -z "$HELM_CHART_REPO_NAME" ]; then
@@ -40,6 +40,7 @@ helm repo add "${HELM_CHART_REPO_NAME}" "${HELM_CHART_REPO_URL}"
 helm pull "${HELM_CHART_REPO_NAME}"/"${HELM_CHART_REPO_NAME}" --version "${CHART_VERSION}"
 
 REGISTRY=$(echo "${GHCR_URL}" | awk -F'^oci?://' '{print $2}') # Get registry host from url
+echo "${REGISTRY}"
 echo "${GHCR_ACCESS_TOKEN}" | helm registry login -u ${GHCR_USERNAME} --password-stdin ${REGISTRY} # Authenticate registry
 PKG_NAME=$(ls | grep tgz)
 echo "${PKG_NAME}"
