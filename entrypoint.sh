@@ -21,12 +21,12 @@ if [ "$GHCR_USERNAME" ]; then
   GHCR_USERNAME="--username ${GHCR_USERNAME}"
 fi
 
-if [ -z "$HELM_CHART_REPO_NAME"]; then
+if [ -z "$HELM_CHART_REPO_NAME" ]; then
   echo "Helm chart repo name is required but not defined."
   exit 1
 fi
 
-if [ -z "$HELM_CHART_REPO_URL"]; then
+if [ -z "$HELM_CHART_REPO_URL" ]; then
   echo "Helm chart repo URL is required but not defined."
   exit 1
 fi
