@@ -1,0 +1,43 @@
+# action.yml
+name: 'Helm chart replicate'
+description: 'Pushes a upstream helm chart to a OCI compatible registry'
+branding:
+  color: 'green'
+  icon: 'upload-cloud'
+inputs:
+  access-token:
+    description: 'API Token with read/write permissions to the helm registry'
+    required: false
+    default: ''
+  ghcr-username:
+    description: 'Username read/write permissions to the helm registry'
+    required: false
+    default: ''
+  ghcr-url:
+    description: 'Repository url'
+    required: true
+    default: ''
+  chart-repo-name:
+    description: 'Relative path to chart folder'
+    required: false
+  chart-repo-url:
+    description: 'Relative path to chart folder'
+    required: false
+  chart-version:
+    description: 'Chart Version'
+    required: false
+    default: ''
+  appVersion:
+    description: 'App Version'
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    HELM_CHART_REPO_NAME: ${{ inputs.chart-repo-name }}
+    GHCR_URL: ${{ inputs.ghcr-url }}
+    GHCR_ACCESS_TOKEN: ${{ inputs.access-token }}
+    GHCR_USERNAME: ${{ inputs.ghcr-username }}
+    CHART_VERSION: ${{ inputs.chart-version }}
+    HELM_CHART_REPO_URL: ${{ inputs.chart-repo-url }}
