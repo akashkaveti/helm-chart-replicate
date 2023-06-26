@@ -20,6 +20,9 @@ inputs:
   chart-repo-name:
     description: 'Relative path to chart folder'
     required: false
+  chart-name:
+    description: 'chart name'
+    required: false
   chart-repo-url:
     description: 'Relative path to chart folder'
     required: false
@@ -32,6 +35,7 @@ runs:
   image: 'Dockerfile'
   env:
     HELM_CHART_REPO_NAME: ${{ inputs.chart-repo-name }}
+    HELM_CHART_NAME: ${{ inputs.chart-name }}
     GHCR_URL: ${{ inputs.ghcr-url }}
     GHCR_ACCESS_TOKEN: ${{ inputs.access-token }}
     GHCR_USERNAME: ${{ inputs.ghcr-username }}

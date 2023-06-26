@@ -31,13 +31,13 @@ if [ -z "$HELM_CHART_REPO_URL" ]; then
   exit 1
 fi
 
-if [ -z "$CHART_VERSION"]; then
+if [ -z "$CHART_VERSION" ]; then
   echo "Helm chart version is required but not defined."
   exit 1
 fi
 
 helm repo add "${HELM_CHART_REPO_NAME}" "${HELM_CHART_REPO_URL}"
-helm pull "${HELM_CHART_REPO_NAME}"/"${HELM_CHART_REPO_NAME}" --version "${CHART_VERSION}"
+helm pull "${HELM_CHART_REPO_NAME}"/"${HELM_CHART_NAME}" --version "${CHART_VERSION}"
 
 REGISTRY=$(echo "${GHCR_URL}" | awk -F'^oci?://' '{print $2}') # Get registry host from url
 echo "${REGISTRY}"
